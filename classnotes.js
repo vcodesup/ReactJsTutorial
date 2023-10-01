@@ -25,7 +25,8 @@ root.render(divParent);
 
 
 */
-//Episode 3
+/*
+Episode 3
 
 var ele = 9;
 
@@ -80,6 +81,35 @@ const HeadingOneLinerComponent = () => <h1>Heading in one lines</h1>
 
 
 root.render(<Heading/>);
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
