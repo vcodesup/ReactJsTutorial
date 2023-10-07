@@ -1,9 +1,3 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-
-
-
-
 const restData = {
     "restaurants": [
         {
@@ -1849,110 +1843,8 @@ const restData = {
             }
         }
     ]
-}
-
-
-// console.log(restData.restaurants[0].info.name)
-function Header() {
-    return (
-        <div className="header">
-            <div>
-                <img className="logo" src="https://images-platform.99static.com/A_Ax0GQuo_NHI0Y7XZHmFtGfBDY=/0x0:1000x1000/500x500/top/smart/99designs-contests-attachments/126/126252/attachment_126252018" />
-            </div>
-
-            <div className="nav-items">
-                <ul>
-                    <li>Home</li>
-                    <li>About Us</li>
-                    <li>Contact Us</li>
-                    <li>Cart</li>
-                </ul>
-            </div>
-        </div>
-    );
-}
+};
 
 
 
-const RestroCard = (props) => {
-
-    const { resData } = props
-
-    const { cloudinaryImageId, name, cuisines, avgRating, costForTwo } = resData?.info;
-    const { deliveryTime } = resData?.info.sla;
-
-    return (
-        <div className="restro-card">
-            <img  className="restro-card-img" src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${cloudinaryImageId}`} />
-            <h3>{name}</h3>
-            <h4>{cuisines.join(",")}</h4>
-            <h4>{avgRating} stars</h4>
-            <h4>{costForTwo}</h4>
-            <h4>{deliveryTime} mins</h4>
-        </div>
-    )
-}
-
-
-
-
-const Body = () => {
-    return (
-        <div className="body">
-            <div className="search">Search</div>
-            <div className="restro-container container">
-                {/* Restro Card */}
-                {
-                    restData.restaurants.map((ele) => {
-                        return <RestroCard key={ele.info.id} resData={ele} />
-                    })
-                }
-
-            </div>
-        </div>
-    )
-}
-
-const AppLayout = () => {
-    return (
-        <div className="app">
-            {/* //Header */}
-            <Header />
-            {/* //Body */}
-            <Body />
-            {/* //Footer */}
-        </div>
-    )
-}
-
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-
-root.render(<AppLayout />);
-
-/*
-
-    LLD
-    <Header>
-        <Logo>
-        <NavItems>
-    </Header>
-        <Body>
-            <Search/>
-            <RestroCard Container>
-                <RestroCard/>
-                <RestroCard/>
-            </RestroCard Container>
-        </Body>
-    <Footer>
-        <Link/>
-    </Footer>
-*/
-
-
-
-
-
-
-
-
+export default restData;

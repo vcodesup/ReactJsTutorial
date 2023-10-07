@@ -63,3 +63,10 @@
     border: 1px solid black;
     box-shadow: 1px 1px solid black;
 }
+
+
+.filter-btn{
+    padding:10px;
+    margin:5px;
+    cursor: pointer;
+}
