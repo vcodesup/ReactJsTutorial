@@ -1,5 +1,4 @@
 import RestroCard from './RestroCard';
-import restData from '../utils/mockData';
 import Shimmer  from '../components/Shimmer'
 import { useState,useEffect } from 'react/cjs/react.development';
 
@@ -9,6 +8,9 @@ const Body = () => {
 
     let [listOfRestro,setListOfRestro] = useState([])
 
+    let [fixedListOfRestro,setFixedListOfRestro] = useState([])
+
+    let [searchText,setSearchText] = useState("");
 
     
     const fetchApiData = async () => {
@@ -18,6 +20,7 @@ const Body = () => {
 
         console.log(apiJson);
         setListOfRestro(apiJson?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle)
+        setFixedListOfRestro(apiJson?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle)
     }
 
 
@@ -27,27 +30,38 @@ const Body = () => {
     },[]);
     // console.log(listOfRestro)
 
-    // if(listOfRestro.length === 0) {
-    //     return <Shimmer/>
-    // }
+    
 
-    return (
+    return listOfRestro.length === 0 ? <Shimmer/> : (
         <div className="body">
             <div className="filter">
+
+                <div className='search-box'>
+                    <input type='text' value={searchText} onChange={(e) => {
+                        
+                        setSearchText(e.target.value)
+                    }}/>
+                    <button onClick={() => {
+                        let filteredListOfRestro = listOfRestro.restaurants.filter((ele) => {
+                            return ele.info.name.toLowerCase().includes(searchText.toLowerCase())
+                        })
+                        setFixedListOfRestro({"restaurants":filteredListOfRestro});
+                    }}>Search</button>
+                </div>
                 <button onClick={() => {
 
                     let temp = listOfRestro.restaurants.filter((ele) => {
                         return ele.info.avgRating > 4
                     })
                
-                    setListOfRestro({"restaurants":temp});
+                    setFixedListOfRestro({"restaurants":temp});
                    
                  }} className="filter-btn">Top Rated Restaurants</button>
             </div>
             <div className="restro-container container">
                 {/* Restro Card */}
                 {
-                   listOfRestro.restaurants &&  listOfRestro.restaurants.map((ele) => {
+                   fixedListOfRestro.restaurants &&  fixedListOfRestro.restaurants.map((ele) => {
                         return <RestroCard key={ele.info.id} resData={ele} />
                     })
                 }
